@@ -637,7 +637,7 @@ check1Panel() {
             fi
 
             if [[ -n "${selectBTDomain}" ]]; then
-                btDomain=$(find /opt/1panel/apps/openresty/openresty/www/sites/*/ssl/fullchain.pem | awk -F "[/]" '{print $9}' | awk '{print NR""":"$0}' | grep "${selectBTDomain}:" | cut -d ":" -f 2)
+                btDomain=$(find /opt/1panel/apps/openresty/openresty/www/sites/*/ssl/fullchain.pem | awk -F "[/]" '{print $9}' | awk '{print NR""":"$0}' | grep -e "^${selectBTDomain}:" | cut -d ":" -f 2)
 
                 if [[ -z "${btDomain}" ]]; then
                     echoContent red " ---> 选择错误，请重新选择"
